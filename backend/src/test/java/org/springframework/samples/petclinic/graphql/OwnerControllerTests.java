@@ -10,7 +10,7 @@ import org.springframework.graphql.test.tester.WebGraphQlTester;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureHttpGraphQlTester
-public class OwnerControllerTests {
+public class OwnerControllerTests extends AbstractClinicGraphqlTests {
     @Autowired
     WebGraphQlTester graphQlTester;
 
@@ -28,10 +28,7 @@ public class OwnerControllerTests {
                 }
             """;
 
-        graphQlTester.mutate()
-            .headers(httpHeaders -> httpHeaders.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2UiLCJpYXQiOjE2MDg4ODk0NDAsImV4cCI6MjM2NjI3MTg0MH0.V36ynhDffqb9LQFsckOdk6lFhcVEDhOCFxFCQDAYG0o"))
-            .build()
-
+        userRoleGraphQlTester
             .document(document)
             .execute()
             .path("owners.owners[0].id").entity(String.class).isEqualTo("1")

@@ -18,8 +18,8 @@ package org.springframework.samples.petclinic.repository;
 
 import org.springframework.samples.petclinic.model.Specialty;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 /**
  * @author Vitaliy Fedoriv

@@ -14,8 +14,8 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;

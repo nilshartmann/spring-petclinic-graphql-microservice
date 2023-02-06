@@ -3,8 +3,8 @@
 INSERT INTO users (USERNAME, PASSWORD, ENABLED, FULLNAME) VALUES ('joe', '{noop}joe', true, 'Joe Hill');
 INSERT INTO users (USERNAME, PASSWORD, ENABLED, FULLNAME) VALUES ('susi', '{noop}susi', true, 'Susi Smith');
 
-INSERT INTO roles (ID, USERNAME, ROLE) VALUES (0, 'susi', 'ROLE_MANAGER');
-INSERT INTO roles (ID, USERNAME, ROLE) VALUES (1, 'joe', 'ROLE_USER');
+INSERT INTO roles (ID, USERNAME, ROLE) VALUES (0, 'susi', 'MANAGER');
+INSERT INTO roles (ID, USERNAME, ROLE) VALUES (1, 'joe', 'USER');
 
 INSERT INTO types VALUES (1, 'cat');
 INSERT INTO types VALUES (2, 'dog');

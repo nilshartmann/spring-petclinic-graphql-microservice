@@ -54,7 +54,7 @@ public class VetController {
     }
 
     @MutationMapping
-    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @PreAuthorize("hasAuthority('SCOPE_MANAGER')")
     public AddVetPayload addVet(@Argument AddVetInput input) {
         try {
             VetResource newVet = vetServiceClient.addVet(input).block();

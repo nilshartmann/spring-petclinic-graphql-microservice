@@ -48,7 +48,6 @@ export default function OwnerPage() {
               <Heading level="3">
                 {pet.name} ({pet.type.name}, * {pet.birthDate})
               </Heading>
-              <Button type="link">Edit {pet.name}</Button>
             </div>
             {pet.visits.visits.length ? (
               <Table

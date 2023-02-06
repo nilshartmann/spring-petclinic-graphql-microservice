@@ -1,9 +1,7 @@
 package org.springframework.samples.petclinic.graphql;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)

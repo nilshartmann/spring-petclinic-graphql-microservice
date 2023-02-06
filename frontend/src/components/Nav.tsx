@@ -10,12 +10,20 @@ function NavLogo() {
   return (
     <div className="flex items-center">
       <div className="flex-shrink-0">
-        <Link to="/">
+        <Link to="/" >
+          <div className={"flex"}>
+          <img
+            className="h-12 mr-3"
+            src="/assets/spring-logo.svg"
+            alt="Spring for GraphQL"
+          />
+
           <img
             className="h-12"
-            src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg"
-            alt="Workflow"
+            src="/assets/spring-graphql-logo.svg"
+            alt="Spring for GraphQL"
           />
+          </div>
         </Link>
       </div>
     </div>

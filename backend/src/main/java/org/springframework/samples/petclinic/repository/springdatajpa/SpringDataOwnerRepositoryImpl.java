@@ -4,10 +4,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
+import jakarta.persistence.TypedQuery;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.OwnerFilter;
 import org.springframework.samples.petclinic.model.OwnerOrder;
@@ -30,7 +31,7 @@ public class SpringDataOwnerRepositoryImpl implements OwnerRepositoryOverride {
 
         sb.append(OwnerOrder.buildOrderJpaQuery(orders));
 
-        Query query = this.em.createQuery(sb.toString());
+        TypedQuery<Owner> query = this.em.createQuery(sb.toString(), Owner.class);
         nonNullFilter.ifPresent(f -> f.buildJpaQueryParameters(query));
 
         return query.getResultList();

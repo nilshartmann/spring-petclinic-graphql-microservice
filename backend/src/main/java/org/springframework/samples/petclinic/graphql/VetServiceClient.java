@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.samples.petclinic.model.InvalidVetDataException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class VetServiceClient {
 
-    private static final Logger log = LoggerFactory.getLogger( VetServiceClient.class );
+    private static final Logger log = LoggerFactory.getLogger(VetServiceClient.class);
 
     private final WebClient webClient;
 
@@ -41,7 +42,7 @@ public class VetServiceClient {
 
     /**
      * Read a single vet using a blocking call.
-     *
+     * <p>
      * Note: normaly you would use the reactive {@link #vetById(Integer)} method, this is for
      * demonstration purposes only.
      */
@@ -67,7 +68,7 @@ public class VetServiceClient {
             .retrieve()
             .bodyToMono(VetResource.class)
             .elapsed()
-            .doFirst( () -> log.info("Start Http Request for Vet with id '{}'", id))
+            .doFirst(() -> log.info("Start Http Request for Vet with id '{}'", id))
             .doOnNext(result -> log.info("Finished Http Request for vet id '{}' took {}ms", id, result.getT1()))
             .map(Tuple2::getT2);
     }
@@ -82,12 +83,12 @@ public class VetServiceClient {
                 .path("/find-vets/{vetIds}")
                 .build(vetIdStrings))
             .retrieve().bodyToFlux(VetResource.class)
-            .doFirst( () -> log.info("Start Http Request for Vets with ids '{}'", vetIdStrings));
+            .doFirst(() -> log.info("Start Http Request for Vets with ids '{}'", vetIdStrings));
     }
 
     /**
      * Uses the `vets` endpoint to read all vets with given ids in one-by-one in MULTIPLE rest calls.
-     *
+     * <p>
      * Note: you would use {@link #findVetsWithIds(Collection)} normaly, but for demonstration
      * (concurrency problems) purposes we need this method here too
      */
@@ -100,7 +101,7 @@ public class VetServiceClient {
             .uri("/vet")
             .bodyValue(addVetInput)
             .retrieve().
-            onStatus(HttpStatus::is4xxClientError,
+            onStatus(HttpStatusCode::is4xxClientError,
                 response -> response.bodyToMono(String.class).map(InvalidVetDataException::new))
             .bodyToMono(VetResource.class);
     }
